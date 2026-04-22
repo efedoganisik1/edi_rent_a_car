@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetim Paneli | EDİ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --edi-yellow: #FFEE00;
+            --edi-bg: #222222;
+            --edi-card: #000000;
+        }
+        body {
+            background-color: var(--edi-bg);
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .navbar {
+            background-color: black !important;
+            border-bottom: 2px solid var(--edi-yellow);
+            padding: 15px 0;
+        }
+        .navbar-brand {
+            color: var(--edi-yellow) !important;
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+        
+        .admin-card {
+            background-color: var(--edi-card);
+            border: 1px solid #333;
+            border-top: 5px solid var(--edi-yellow);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            height: 100%;
+        }
+        
+        .page-title {
+            color: white;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+        .page-title span { color: var(--edi-yellow); }
+
+        .form-control, .form-select {
+            background-color: #333;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 0;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .form-control:focus, .form-select:focus {
+            background-color: #444;
+            border-color: var(--edi-yellow);
+            color: white;
+            box-shadow: none;
+        }
+        /* Dosya yükleme butonu stili */
+        input[type="file"]::file-selector-button {
+            background-color: var(--edi-yellow);
+            border: none;
+            padding: 5px 10px;
+            font-weight: bold;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        .table-dark {
+            --bs-table-bg: #111;
+            --bs-table-border-color: #333;
+        }
+        .table th {
+            color: var(--edi-yellow);
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+        .table td {
+            vertical-align: middle;
+            font-size: 0.9rem;
+        }
+
+        .btn-edi {
+            background-color: var(--edi-yellow);
+            color: black;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-radius: 0;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            transition: all 0.3s;
+        }
+        .btn-edi:hover {
+            background-color: white;
+            box-shadow: 0 0 15px var(--edi-yellow);
+        }
+        
+        .btn-update {
+            background-color: #333;
+            color: var(--edi-yellow);
+            border: 1px solid var(--edi-yellow);
+            font-weight: bold;
+            font-size: 0.8rem;
+            padding: 5px 10px;
+        }
+        .btn-update:hover {
+            background-color: var(--edi-yellow);
+            color: black;
+        }
+        
+        .btn-delete {
+            color: #ff4444;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+        }
+        .btn-delete:hover { color: red; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid px-5">
+            <a class="navbar-brand" href="/">EDİ <span style="color:white; font-size:0.6em">YÖNETİM PANELİ</span></a>
+            <a href="/" class="btn btn-outline-light btn-sm rounded-0">SİTEYE DÖN</a>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-4 mt-4">
+        <div class="row">
+            
+            <div class="col-lg-4">
+                <div class="admin-card">
+                    <h2 class="page-title">FİLOYA <span>YENİ ARAÇ</span> EKLE</h2>
+                    
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label class="small text-secondary fw-bold">MARKA</label>
+                                <input type="text" name="marka" class="form-control" placeholder="BMW" required>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="small text-secondary fw-bold">MODEL</label>
+                                <input type="text" name="model" class="form-control" placeholder="520i" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 mb-3">
+                                <label class="small text-secondary fw-bold">YIL</label>
+                                <input type="number" name="yil" class="form-control" placeholder="2024" required>
+                            </div>
+                            <div class="col-4 mb-3">
+                                <label class="small text-secondary fw-bold">YAKIT</label>
+                                <select name="yakit" class="form-select">
+                                    <option value="Benzin">Benzin</option>
+                                    <option value="Dizel">Dizel</option>
+                                    <option value="Hibrit">Hibrit</option>
+                                    <option value="Elektrik">Elektrik</option>
+                                </select>
+                            </div>
+                            <div class="col-4 mb-3">
+                                <label class="small text-secondary fw-bold">VİTES</label>
+                                <select name="vites" class="form-select">
+                                    <option value="Otomatik">Otomatik</option>
+                                    <option value="Manuel">Manuel</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="small text-secondary fw-bold">ARAÇ GÖRSELİ</label>
+                            <input type="file" name="gorsel" class="form-control" accept="image/*" required>
+                            <small class="text-secondary" style="font-size: 0.7rem;">* JPG veya PNG dosyası seçin</small>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="small text-warning fw-bold">GÜNLÜK FİYAT (TL)</label>
+                            <input type="number" name="fiyat" class="form-control" placeholder="5000" required min="0">
+                        </div>
+
+                        <button type="submit" class="btn btn-edi">KAYDET <i class="fa fa-plus ms-2"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="admin-card">
+                    <h2 class="page-title">MEVCUT ARAÇLARI <span>YÖNET</span></h2>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px;">IMG</th>
+                                    <th>ARAÇ</th>
+                                    <th>GÜNCEL FİYAT (TL)</th>
+                                    <th>DURUM</th>
+                                    <th class="text-end">İŞLEM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for araba in arabalar %}
+                                <tr>
+                                    <form action="/arac-guncelle/{{ araba['id'] }}" method="POST">
+                                        <td>
+                                            <img src="{{ araba['gorsel'] }}" style="width: 40px; height: 30px; object-fit: cover; border-radius: 3px;">
+                                        </td>
+                                        <td>
+                                            <div class="fw-bold text-white">{{ araba['marka'] }} {{ araba['model'] }}</div>
+                                            <div class="small text-secondary">{{ araba['yil'] }}</div>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="yeni_fiyat" value="{{ araba['gunluk_fiyat'] }}" class="form-control form-control-sm" style="width: 100px;">
+                                        </td>
+                                        <td>
+                                            <select name="yeni_durum" class="form-select form-select-sm" style="width: 110px; background-color: #222; color: white; border: 1px solid #444;">
+                                                <option value="1" {% if araba['durum'] == 1 %}selected{% endif %}>MÜSAİT 🟢</option>
+                                                <option value="0" {% if araba['durum'] == 0 %}selected{% endif %}>KİRADA 🔴</option>
+                                                <option value="2" {% if araba['durum'] == 2 %}selected{% endif %}>BAKIMDA 🔧</option>
+                                            </select>
+                                        </td>
+                                        <td class="text-end">
+                                            <button type="submit" class="btn btn-update me-2" title="Güncelle">
+                                                <i class="fa fa-save"></i>
+                                            </button>
+                                            <a href="/arac-sil/{{ araba['id'] }}" class="btn-delete" onclick="return confirm('Bu aracı silmek istediğine emin misin?');" title="Sil">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </form>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

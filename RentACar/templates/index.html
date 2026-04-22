@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDİ | Premium Araç Kiralama</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* EDİ - ÇİFT TONLU KOYU TEMA */
+        :root {
+            --edi-yellow: #FFEE00; 
+            --edi-bg-top: #000000;     
+            --edi-bg-bottom: #222222;  
+            --edi-card-bg: #f9f9f9; 
+            --edi-text-light: #ffffff; 
+            --edi-text-dark: #222222;  
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--edi-bg-bottom); 
+            color: var(--edi-text-light);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: var(--edi-bg-top) !important; 
+            padding: 15px 0;
+            border-bottom: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .navbar-brand {
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--edi-yellow) !important;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .nav-link {
+            color: #ccc !important;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--edi-yellow) !important;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            background-color: var(--edi-bg-top);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 4px solid var(--edi-yellow); 
+        }
+        .hero-title {
+            font-weight: 900;
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+        .hero-title span {
+            color: var(--edi-yellow);
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-top: 15px;
+            color: #bbb;
+        }
+
+        /* FİLTRE KUTUSU */
+        .filtre-kutusu {
+            background-color: var(--edi-bg-bottom);
+            padding: 20px;
+            border: 1px solid #444;
+            border-bottom: 4px solid var(--edi-yellow);
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .form-select {
+            background-color: #333; 
+            color: white;
+            border: 1px solid #555;
+            border-radius: 0;
+            font-weight: bold;
+        }
+        .form-select:focus {
+            background-color: #444;
+            color: var(--edi-yellow);
+            border-color: var(--edi-yellow);
+            box-shadow: none;
+        }
+        .btn-temizle {
+            background-color: var(--edi-yellow);
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 0;
+            width: 100%;
+        }
+        .btn-temizle:hover {
+            background-color: white;
+        }
+
+        /* KARTLAR */
+        /* KARTLAR */
+        /* KARTLAR (ANİMASYONLU & EŞİT BOY) */
+        .card {
+            border: none;
+            border-radius: 0;
+            background: var(--edi-card-bg); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease; /* Olayın sırrı bu: Yumuşak geçiş */
+            border: 1px solid #eee;
+            height: 100%; /* Hepsi eşit boyda olsun */
+        }
+
+        /* HOVER EFEKTİ (MOUSE ÜZERİNE GELİNCE) */
+        .card:hover {
+            transform: translateY(-5px); /* 10px yukarı zıplar */
+            border-bottom: 5px solid var(--edi-yellow); /* Altına sarı çizgi çeker */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4); /* Gölgesi derinleşir */
+        }
+        }
+        .card-img-top {
+            height: 220px;
+            object-fit: contain;
+            padding: 15px;
+            background-color: white; 
+            border-bottom: 1px solid #eee;
+        }
+        .card-body {
+            padding: 25px;
+            color: var(--edi-text-dark);
+        }
+        .card-title {
+            font-weight: 900;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            color: black;
+        }
+        .ozellikler span {
+            font-size: 0.85rem;
+            color: #666; 
+            margin-right: 12px;
+            font-weight: 500;
+        }
+        .fiyat-etiketi {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: black;
+        }
+        .small.text-muted {
+            color: #888 !important;
+        }
+
+        /* BUTONLAR */
+        .btn-edi {
+            background-color: var(--edi-yellow);
+            color: var(--edi-text-dark);
+            font-weight: 900;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 0;
+            padding: 12px 20px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        .btn-edi:hover {
+            background-color: black;
+            color: var(--edi-yellow); 
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .btn-edi:disabled {
+            background-color: #ccc;
+            color: #666;
+            box-shadow: none;
+        }
+        
+        /* MODAL */
+        .modal-content {
+            background-color: var(--edi-card-bg); 
+            color: var(--edi-text-dark);
+            border: none;
+        }
+        .modal-header {
+            background-color: var(--edi-bg-bottom); 
+            color: var(--edi-yellow);
+            border-bottom: 2px solid var(--edi-yellow);
+        }
+        .btn-close {
+            filter: invert(1);
+            background-color: var(--edi-yellow);
+            opacity: 1;
+        }
+        
+        #modalAracResim {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background-color: white;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            padding: 10px;
+            border: 1px solid #eee;
+        }
+        .modal-ozellikler {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #555;
+            background-color: #eee; 
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .modal-ozellikler i {
+            color: #d4d400; 
+            margin-right: 5px;
+        }
+        .gunluk-fiyat-bilgisi {
+            text-align: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: black;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        
+        .modal-body .form-control {
+             background-color: white;
+             border: 1px solid #ccc;
+             color: black;
+        }
+        .modal-body .form-control:focus {
+            border-color: var(--edi-yellow);
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                EDİ <span style="color: white; font-size: 0.5em; vertical-align: middle;">RENT A CAR</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    {% if admin_mi %}
+                    <li class="nav-item">
+                        <a class="btn btn-warning btn-sm me-3 fw-bold" href="/arac-ekle" style="background-color: var(--edi-yellow); color: black; border:none; border-radius: 0;">+ YÖNETİM PANELİ</a>
+                    </li>
+                    {% endif %}
+
+                    {% if session.get('ad_soyad') %}
+                        <li class="nav-item">
+                            <span class="nav-link me-2" style="font-size: 0.8rem;">HOŞGELDİN, {{ session['ad_soyad']|upper }}</span>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/cikis" class="nav-link" style="color: var(--edi-yellow) !important;">ÇIKIŞ</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item me-3">
+                            <a href="/kayit" class="nav-link">KAYIT OL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/giris" class="nav-link"><i class="fa-solid fa-user"></i> GİRİŞ YAP</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8 text-start">
+                    <h1 class="hero-title">ŞEHRİN HAKİMİ<br><span>OLMAYA HAZIR MISIN?</span></h1>
+                    <p class="hero-subtitle">EDİ kalitesiyle hizmetinizde.</p>
+                </div>
+                <div class="col-md-4 d-none d-md-block">
+                    <i class="fa-solid fa-car-side" style="font-size: 8rem; color: #333; text-shadow: 2px 2px 0px var(--edi-yellow);"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 mb-5">
+        <h3 class="mb-4" style="font-weight: 900; text-transform: uppercase; color: white;">
+            <span style="color: var(--edi-yellow);">///</span> FİLOMUZU KEŞFEDİN
+        </h3>
+        
+        <div class="filtre-kutusu">
+            <div class="row g-3">
+                <div class="col-md-2"> <label class="text-white small mb-1">ARAÇ YILI</label>
+                    <select id="filtreYil" class="form-select" onchange="araclariFiltrele()">
+                        <option value="hepsi">Tüm Yıllar</option>
+                        {% for yil_veri in yillar %}
+                            <option value="{{ yil_veri['yil'] }}">{{ yil_veri['yil'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="text-white small mb-1">YAKIT TİPİ</label>
+                    <select id="filtreYakit" class="form-select" onchange="araclariFiltrele()">
+                        <option value="hepsi">Tüm Yakıtlar</option>
+                        <option value="Benzin">Benzin</option>
+                        <option value="Dizel">Dizel</option>
+                        <option value="Hibrit">Hibrit</option>
+                        <option value="Elektrik">Elektrik</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="text-white small mb-1">ŞANZIMAN</label>
+                    <select id="filtreVites" class="form-select" onchange="araclariFiltrele()">
+                        <option value="hepsi">Tüm Vitesler</option>
+                        <option value="Otomatik">Otomatik</option>
+                        <option value="Manuel">Manuel</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="text-white small mb-1">DURUM</label>
+                    <select id="filtreDurum" class="form-select" onchange="araclariFiltrele()">
+                        <option value="hepsi">Tüm Durumlar</option>
+                        <option value="1">Müsait 🟢</option>
+                        <option value="0">Kirada 🔴</option>
+                        <option value="2">Bakımda 🔧</option>
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button class="btn btn-temizle" onclick="filtreleriTemizle()">FİLTRELERİ TEMİZLE</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row g-4" id="aracListesi">
+            {% for araba in arabalar %}
+            <div class="col-md-4 arac-karti" 
+                 data-yil="{{ araba['yil'] }}" 
+                 data-yakit="{{ araba['yakit'] }}" 
+                 data-vites="{{ araba['vites'] }}"
+                 data-durum="{{ araba['durum'] }}">
+                 
+                <div class="card h-100 {{ 'opacity-50' if araba['durum'] != 1 else '' }}">
+                    <img src="{{ araba['gorsel'] }}" class="card-img-top" alt="{{ araba['marka'] }}">
+                    
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ araba['marka'] }} {{ araba['model'] }}</h5>
+                        
+                        <div class="ozellikler mt-2">
+                            <span><i class="fa-solid fa-calendar"></i> {{ araba['yil'] }}</span>
+                            <span><i class="fa-solid fa-gas-pump"></i> {{ araba['yakit'] }}</span>
+                            <span><i class="fa-solid fa-gears"></i> {{ araba['vites'] }}</span>
+                        </div>
+
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top" style="border-color: #eee !important;">
+                                <div>
+                                    <span class="fiyat-etiketi">{{ araba['gunluk_fiyat'] }} TL</span>
+                                    <span class="small text-muted"> / gün</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-3">
+                                {% if araba['durum'] == 1 %}
+                                    <button class="btn btn-edi" 
+                                        onclick="modalAc({{ araba['id'] }}, '{{ araba['marka'] }} {{ araba['model'] }}', {{ araba['gunluk_fiyat'] }}, '{{ araba['gorsel'] }}', '{{ araba['yil'] }}', '{{ araba['yakit'] }}', '{{ araba['vites'] }}')">
+                                        İNCELE VE KİRALA <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                {% elif araba['durum'] == 2 %}
+                                    <button class="btn btn-warning w-100 rounded-0" disabled style="background-color: #d68100; color: white; border:none; font-weight: 900;">
+                                        BAKIMDA 🔧
+                                    </button>
+                                {% else %}
+                                    <button class="btn btn-secondary w-100 rounded-0" disabled style="background-color: #333; color: #888; border:none; font-weight: 900;">
+                                        KİRALANDI ⛔
+                                    </button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="modal fade" id="kiralaModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-0">
+                <form action="/odeme" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold">REZERVASYON</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <input type="hidden" name="araba_id" id="gizliArabaId">
+                        <input type="hidden" id="gizliFiyat">
+                        <input type="hidden" name="toplam_tutar_input" id="gizliToplamTutar">
+
+                        <h4 id="arabaBaslik" class="fw-bold mb-3 text-center text-uppercase text-dark">Seçilen Araba</h4>
+
+                        <img id="modalAracResim" src="" alt="Araç Resmi">
+                        
+                        <div class="modal-ozellikler">
+                            <span id="modYil"><i class="fa-solid fa-calendar"></i> </span>
+                            <span id="modYakit"><i class="fa-solid fa-gas-pump"></i> </span>
+                            <span id="modVites"><i class="fa-solid fa-gears"></i> </span>
+                        </div>
+
+                        <div class="gunluk-fiyat-bilgisi">
+                            Günlük Fiyat: <span id="modalGunlukFiyat">0</span> TL
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label class="fw-bold small mb-1 text-dark">ALIŞ TARİHİ</label>
+                                <input type="date" name="alis_tarihi" id="alisTarihi" class="form-control rounded-0" required onchange="fiyatHesapla()">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="fw-bold small mb-1 text-dark">DÖNÜŞ TARİHİ</label>
+                                <input type="date" name="donus_tarihi" id="donusTarihi" class="form-control rounded-0" required onchange="fiyatHesapla()">
+                            </div>
+                        </div>
+
+                        <div class="alert mt-3 rounded-0 text-center" style="background-color: var(--edi-bg-bottom); color: var(--edi-yellow); border: 1px solid var(--edi-yellow);">
+                            <span class="small text-white">TOPLAM TUTAR</span><br>
+                            <span id="toplamTutar" class="fs-1 fw-bold">0</span> <span class="fs-4">TL</span>
+                            <div id="gunSayisiText" class="small text-white opacity-75 mt-1">(0 Gün)</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light border-top-0">
+                        <button type="submit" id="odemeButonu" class="btn btn-edi" disabled>
+                            ÖDEMEYE GEÇ 💳
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var bugun = new Date().toISOString().split('T')[0];
+            document.getElementById('alisTarihi').setAttribute('min', bugun);
+            document.getElementById('donusTarihi').setAttribute('min', bugun);
+        });
+
+        // FİLTRELEME (GÜNCELLENDİ)
+        function araclariFiltrele() {
+            var secilenYil = document.getElementById('filtreYil').value;
+            var secilenYakit = document.getElementById('filtreYakit').value;
+            var secilenVites = document.getElementById('filtreVites').value;
+            var secilenDurum = document.getElementById('filtreDurum').value; // Yeni
+
+            var araclar = document.getElementsByClassName('arac-karti');
+
+            for (var i = 0; i < araclar.length; i++) {
+                var arac = araclar[i];
+                var aracYil = arac.getAttribute('data-yil');
+                var aracYakit = arac.getAttribute('data-yakit');
+                var aracVites = arac.getAttribute('data-vites');
+                var aracDurum = arac.getAttribute('data-durum'); // Yeni
+
+                var yilUygun = (secilenYil === 'hepsi' || aracYil === secilenYil);
+                var yakitUygun = (secilenYakit === 'hepsi' || aracYakit === secilenYakit);
+                var vitesUygun = (secilenVites === 'hepsi' || aracVites === secilenVites);
+                var durumUygun = (secilenDurum === 'hepsi' || aracDurum === secilenDurum); // Yeni
+
+                if (yilUygun && yakitUygun && vitesUygun && durumUygun) {
+                    arac.style.display = 'block'; 
+                } else {
+                    arac.style.display = 'none'; 
+                }
+            }
+        }
+
+        function filtreleriTemizle() {
+            document.getElementById('filtreYil').value = 'hepsi';
+            document.getElementById('filtreYakit').value = 'hepsi';
+            document.getElementById('filtreVites').value = 'hepsi';
+            document.getElementById('filtreDurum').value = 'hepsi'; // Yeni
+            araclariFiltrele();
+        }
+
+        // MODAL VE HESAPLAMA
+        function modalAc(id, markaModel, fiyat, gorsel, yil, yakit, vites) {
+            document.getElementById('gizliArabaId').value = id;
+            document.getElementById('gizliFiyat').value = fiyat;
+            document.getElementById('arabaBaslik').innerText = markaModel;
+            
+            document.getElementById('modalAracResim').src = gorsel;
+            document.getElementById('modYil').innerHTML = '<i class="fa-solid fa-calendar"></i> ' + yil;
+            document.getElementById('modYakit').innerHTML = '<i class="fa-solid fa-gas-pump"></i> ' + yakit;
+            document.getElementById('modVites').innerHTML = '<i class="fa-solid fa-gears"></i> ' + vites;
+            document.getElementById('modalGunlukFiyat').innerText = fiyat;
+
+            document.getElementById('toplamTutar').innerText = "0";
+            document.getElementById('gunSayisiText').innerText = "(0 Gün)";
+            document.getElementById('odemeButonu').disabled = true; 
+            document.getElementById('alisTarihi').value = "";
+            document.getElementById('donusTarihi').value = "";
+
+            var myModal = new bootstrap.Modal(document.getElementById('kiralaModal'));
+            myModal.show();
+        }
+
+        function fiyatHesapla() {
+            var alis = document.getElementById('alisTarihi').value;
+            var donus = document.getElementById('donusTarihi').value;
+            var fiyat = parseFloat(document.getElementById('gizliFiyat').value);
+
+            if (alis === "" || donus === "") return;
+
+            var d1 = new Date(alis);
+            var d2 = new Date(donus);
+            var zamanFarki = d2.getTime() - d1.getTime();
+            var gunFarki = zamanFarki / (1000 * 3600 * 24);
+
+            if (gunFarki <= 0) {
+                document.getElementById('toplamTutar').innerText = "---";
+                document.getElementById('gunSayisiText').innerText = "Hatalı Tarih";
+                document.getElementById('odemeButonu').disabled = true;
+            } else {
+                var toplam = gunFarki * fiyat;
+                document.getElementById('toplamTutar').innerText = toplam;
+                document.getElementById('gunSayisiText').innerText = "(" + gunFarki + " Gün)";
+                document.getElementById('gizliToplamTutar').value = toplam;
+                document.getElementById('odemeButonu').disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
